@@ -7,11 +7,19 @@
 <ion-content padding>
   <h2>Star Wars API</h2>
 
-  <ion-list>
-    <ion-item *ngFor="let starship of starships">
-      <img src="{{starship.name}}" />
-    </ion-item>
-  </ion-list>
+  <p *ngIf="starship">Name: {{starship.name}}</p>
+  <p *ngIf="starship">Model: {{starship.model}}</p>
+  <p *ngIf="starship">Manufacturer: {{starship.manufacturer}}</p>
+  <p *ngIf="starship">Starship Class: {{starship.starship_class}}</p>
 
-  <button (click)="callStarWarsAPI()">Submit</button>
+  <button (click)="callStarWarsRoulette()">Roll the Dice!</button>
+
+  <hr>
+
+  <section>
+    <h2>Search For A Star Wars Starship</h2>
+    <p>Search String: {{name}}</p>
+    <input [(ngModel)]="name" type="text" placeholder="Death Star">
+    <input type="submit" value="Search">
+  </section>
 </ion-content>
