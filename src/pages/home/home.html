@@ -7,10 +7,10 @@
 <ion-content padding>
   <h2>Star Wars API</h2>
 
-  <p *ngIf="starship">Name: {{starship.name}}</p>
-  <p *ngIf="starship">Model: {{starship.model}}</p>
-  <p *ngIf="starship">Manufacturer: {{starship.manufacturer}}</p>
-  <p *ngIf="starship">Starship Class: {{starship.starship_class}}</p>
+  <p *ngIf="starshipRoulette">Name: {{starshipRoulette.name}}</p>
+  <p *ngIf="starshipRoulette">Model: {{starshipRoulette.model}}</p>
+  <p *ngIf="starshipRoulette">Manufacturer: {{starshipRoulette.manufacturer}}</p>
+  <p *ngIf="starshipRoulette">Starship Class: {{starshipRoulette.starship_class}}</p>
 
   <button (click)="callStarWarsRoulette()">Roll the Dice!</button>
 
@@ -20,6 +20,13 @@
     <h2>Search For A Star Wars Starship</h2>
     <p>Search String: {{name}}</p>
     <input [(ngModel)]="name" type="text" placeholder="Death Star">
-    <input type="submit" value="Search">
+    <input (click)="findStarship(name)" type="submit" value="Search">
   </section>
+
+  <section *ngIf="starships">
+    <ul>
+      <li *ngFor="let starship of starships">{{starship.name}} -- {{starship.starship_class}}</li>
+    </ul>
+  </section>
+  
 </ion-content>

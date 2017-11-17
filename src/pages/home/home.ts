@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+// import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { StarWarsServiceProvider } from '../../providers/star-wars-service/star-wars-service';
@@ -10,7 +10,8 @@ import { StarWarsServiceProvider } from '../../providers/star-wars-service/star-
 })
 export class HomePage {
 
-	starship: any;
+	starshipRoulette: any;
+  starships = [];
 
   constructor(public navCtrl: NavController, private starWarsServiceProvider: StarWarsServiceProvider) { 
 
@@ -21,10 +22,19 @@ export class HomePage {
   	this.starWarsServiceProvider.callStarWarsRoulette()
   	.subscribe(data => {
   		console.log('back to the callStarWarsAPI function!');
-  		this.starship = data.json();
-  		console.log(this.starship);
-  	})
-  	
+  		this.starshipRoulette = data.json();
+  		console.log(this.starshipRoulette);
+  	});
+  }
+
+  findStarship(name) {
+    console.log('looking for a starship: ' + name);
+    this.starWarsServiceProvider.callStarWarsSearch(name)
+    .subscribe(data => {
+      this.starships = data.json().results;
+      console.log(this.starships);
+    })
+    
   }
 
 }
